@@ -15,7 +15,7 @@ apache_disable_mpm_{{mpm_module}}:
     - name: a2dismod {{mpm_module}}
     - unless: test -f /etc/apache2/mods-enabled/{{apache.mpm_module|lower}}.load
     - require_in:
-      - file: apache_module_mpm
+      - file: apache_module_mpm_{{apache.mpm_module|lower}}
   {%- endif %}
 {%- endfor %}
 
