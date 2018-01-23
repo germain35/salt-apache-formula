@@ -1,0 +1,17 @@
+apache:
+  lookup:
+    user: apache2
+    group: apache2
+  manage_user: True
+  mpm_module: 'worker'
+  config:
+    ports:
+      http:
+        - 80
+      ssl:
+        - 443
+      tls:
+        - 443
+    security:
+      tokens: 'Prod'
+      signature: 'Off'

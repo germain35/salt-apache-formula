@@ -1,0 +1,16 @@
+{%- from "apache/map.jinja" import apache with context -%}
+# Managed by salt
+
+# prefork MPM
+# StartServers: number of server processes to start
+# MinSpareServers: minimum number of server processes which are kept spare
+# MaxSpareServers: maximum number of server processes which are kept spare
+# MaxRequestWorkers: maximum number of server processes allowed to start
+# MaxConnectionsPerChild: maximum number of requests a server process serves
+<IfModule mpm_prefork_module>
+  StartServers           {{ apache.mpm.prefork.config.start_servers }}
+  MinSpareServers        {{ apache.mpm.prefork.config.min_spare_threads }}
+  MaxSpareServers        {{ apache.mpm.prefork.config.max_spare_threads }}
+  MaxRequestWorkers      {{ apache.mpm.prefork.config.max_request_workers }}
+  MaxConnectionsPerChild {{ apache.mpm.prefork.config.max_connections_per_child }}
+</IfModule>

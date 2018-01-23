@@ -1,0 +1,22 @@
+{%- from "apache/map.jinja" import apache with context -%}
+# Managed by salt
+
+{%- for port in apache.config.ports.get('http', []) %}
+Listen {{ port }}
+{%- endfor %}
+
+{%- if apache.config.ports.ssl is defined %}
+<IfModule ssl_module>
+  {%- for port in apache.config.ports.get('ssl', []) %}
+  Listen {{ port }}
+  {%- endfor %}
+</IfModule>
+{%- endif %}
+
+{%- if apache.config.ports.tls is defined %}
+<IfModule mod_gnutls.c>
+  {%- for port in apache.config.ports.get('tls', []) %}
+  Listen {{ port }}
+  {%- endfor %}
+</IfModule>
+{%- endif %}

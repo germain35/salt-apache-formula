@@ -1,0 +1,36 @@
+apache:
+  service_reload: False
+  service_enabled: True
+  mpm_module: 'event'
+  manage_user: False
+  config:
+    security:
+      tokens: 'Full'
+      signature: 'On'
+      trace: 'Off'
+  mpm:
+    event:
+      config:
+          start_servers: 2
+          min_spare_threads: 25
+          max_spare_threads: 75
+          thread_limit: 64
+          thread_per_child: 25
+          max_request_workers: 150
+          max_connection_per_child: 0
+    prefork:
+      config:
+        start_servers: 2
+        min_spare_threads: 5
+        max_spare_threads: 10
+        max_request_workers: 150
+        max_connection_per_child: 0
+    worker:
+      config:
+        start_servers: 2
+          min_spare_threads: 25
+          max_spare_threads: 75
+          thread_limit: 64
+          thread_per_child: 25
+          max_request_workers: 150
+          max_connection_per_child: 0
