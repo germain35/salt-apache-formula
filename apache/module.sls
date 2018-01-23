@@ -5,8 +5,8 @@ include:
   - apache.config
   - apache.service
 
-{%- for module in apache.modules %}
-  {%- if apache.modules.get(module).get(enabled, True) %}
+{%- for module, params in apache.get('modules', {}).iteritems() %}
+  {%- if params.get(enabled, True) %}
 
 {%- if module == 'passenger' %}
 
