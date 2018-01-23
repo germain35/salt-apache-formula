@@ -10,7 +10,7 @@ apache_ports_config:
     - name: {{ apache.ports_conf_file }}
     - source: salt://apache/files/ports.conf.jinja
     - template: jinja
-    user: root
+    - user: root
     - mode: 644
     - watch_in:
       - service: apache_service
