@@ -21,14 +21,14 @@ apache_disable_mpm_{{mpm_module}}:
 
 apache_module_mpm_{{apache.mpm_module|lower}}:
   file.managed:
-    name: {{ apache.mods_dir|path_join('mpm_' ~ apache.mpm_module|lower ~ '.conf') }}
-    source: salt://apache/files/mpm_{{ apache.mpm_module|lower }}.conf.jinja
-    template: jinja
-    user: root
-    mode: 644
-    watch_in:
+    - name: {{ apache.mods_dir|path_join('mpm_' ~ apache.mpm_module|lower ~ '.conf') }}
+    - source: salt://apache/files/mpm_{{ apache.mpm_module|lower }}.conf.jinja
+    - template: jinja
+    - user: root
+    - mode: 644
+    - watch_in:
       - service: apache_service
-    require:
+    - require:
       - sls: apache.install
   cmd.run:
     - name: a2enmod mpm_{{apache.mpm_module|lower}}
