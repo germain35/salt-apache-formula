@@ -4,7 +4,7 @@
 apache_disable_default_site:
   cmd.run:
     - name: a2dissite 000-default
-    - creates: /etc/apache2/sites-enabled/000-default.conf
+    - onlyif: test -f /etc/apache2/sites-enabled/000-default.conf
 {%- endif %}
 
 {%- if apache.sites is defined %}
