@@ -11,13 +11,13 @@ apache:
   mpm:
     event:
       config:
-          start_servers: 2
-          min_spare_threads: 25
-          max_spare_threads: 75
-          thread_limit: 64
-          thread_per_child: 25
-          max_request_workers: 150
-          max_connection_per_child: 0
+        start_servers: 2
+        min_spare_threads: 25
+        max_spare_threads: 75
+        thread_limit: 64
+        thread_per_child: 25
+        max_request_workers: 150
+        max_connection_per_child: 0
     prefork:
       config:
         start_servers: 2
@@ -28,9 +28,9 @@ apache:
     worker:
       config:
         start_servers: 2
-          min_spare_threads: 25
-          max_spare_threads: 75
-          thread_limit: 64
-          thread_per_child: 25
-          max_request_workers: 150
-          max_connection_per_child: 0
+        min_spare_threads: 25
+        max_spare_threads: 75
+        thread_limit: 64
+        thread_per_child: 25
+        max_request_workers: 150
+        max_connection_per_child: 0
