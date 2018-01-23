@@ -72,7 +72,7 @@ apache_module_{{module}}_enable:
 apache_module_{{module}}_disable:
   cmd.run:
     - name: a2dismod {{module}}
-    - unless: test -f /etc/apache2/mods-enabled/{{module}}.load
+    - onlyif: test -f /etc/apache2/mods-enabled/{{module}}.load
     watch_in:
       - service: apache_service
     require:

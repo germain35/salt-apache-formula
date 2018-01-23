@@ -12,8 +12,8 @@ include:
   {%- if mpm_module != apache.mpm_module|lower %}
 apache_disable_mpm_{{mpm_module}}:
   cmd.run:
-    - name: a2dismod {{mpm_module}}
-    - unless: test -f /etc/apache2/mods-enabled/{{apache.mpm_module|lower}}.load
+    - name: a2dismod mpm_{{mpm_module}}
+    - onlyif: test -f /etc/apache2/mods-enabled/{{apache.mpm_module|lower}}.load
     - require_in:
       - file: apache_module_mpm_{{apache.mpm_module|lower}}
   {%- endif %}
