@@ -15,7 +15,7 @@ that differ from what is in defaults.yaml
 {% set os_family_map = salt['grains.filter_by']({
     'Debian': {
         'pkgs': ['apache2'],
-        'service': 'apache',
+        'service': 'apache2',
         'env_file': '/etc/apache2/envvars',
         'ports_conf_file': '/etc/apache2/ports.conf',
         'security_conf_file': '/etc/apache2/conf-available/security.conf',
