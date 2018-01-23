@@ -17,14 +17,14 @@ apache:
         thread_limit: 64
         threads_per_child: 25
         max_request_workers: 150
-        max_connection_per_child: 0
+        max_connections_per_child: 0
     prefork:
       config:
         start_servers: 2
         min_spare_threads: 5
         max_spare_threads: 10
         max_request_workers: 150
-        max_connection_per_child: 0
+        max_connections_per_child: 0
     worker:
       config:
         start_servers: 2
@@ -33,4 +33,4 @@ apache:
         thread_limit: 64
         threads_per_child: 25
         max_request_workers: 150
-        max_connection_per_child: 0
+        max_connections_per_child: 0
