@@ -1,5 +1,12 @@
 {%- from "apache/map.jinja" import apache with context %}
 
+{%- if apache.disable_default_site %}
+apache_disable_default_site:
+  cmd.run:
+    - name: a2dissite 000-default
+    - creates: /etc/apache2/sites-enabled/000-default.conf
+{%- endif %}
+
 {%- if apache.sites is defined %}
   {%- for site, params in apache.sites.iteritems() %}
 apache_site_{{site}}:
@@ -27,7 +34,7 @@ apache_enable_site_{{site}}:
       - file: apache_site_{{site}}
     - watch_in:
       - service: apache_service
-      
+
     {%- endif %}
   {%- endfor %}
 {%- endif %}

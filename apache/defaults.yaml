@@ -1,6 +1,7 @@
 apache:
   service_reload: False
   service_enabled: True
+  disable_default_site: False
   mpm_module: 'event'
   manage_user: False
   config:

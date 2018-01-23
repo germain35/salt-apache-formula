@@ -3,6 +3,7 @@ apache:
     user: apache2
     group: apache2
   manage_user: True
+  disable_default_site: True
   mpm_module: 'worker'
   config:
     ports:
