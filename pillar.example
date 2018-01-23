@@ -15,3 +15,9 @@ apache:
     security:
       tokens: 'Prod'
       signature: 'Off'
+  sites:
+    default:
+      source: salt://apache-files/sites-available/default.conf.jinja
+      prefix: '00-'
+      settings:
+        server_name: site.domain.com
