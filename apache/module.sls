@@ -62,9 +62,9 @@ apache_module_{{module}}_enable:
   cmd.run:
     - name: a2enmod {{module}}
     - creates: /etc/apache2/mods-enabled/{{module}}.load
-    watch_in:
+    - watch_in:
       - service: apache_service
-    require:
+    - require:
       - sls: apache.install
 
   {%- else %}
@@ -73,9 +73,9 @@ apache_module_{{module}}_disable:
   cmd.run:
     - name: a2dismod {{module}}
     - onlyif: test -f /etc/apache2/mods-enabled/{{module}}.load
-    watch_in:
+    - watch_in:
       - service: apache_service
-    require:
+    - require:
       - sls: apache.install
 
   {%- endif %}
