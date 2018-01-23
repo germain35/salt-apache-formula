@@ -15,7 +15,7 @@ apache:
         min_spare_threads: 25
         max_spare_threads: 75
         thread_limit: 64
-        thread_per_child: 25
+        threads_per_child: 25
         max_request_workers: 150
         max_connection_per_child: 0
     prefork:
@@ -31,6 +31,6 @@ apache:
         min_spare_threads: 25
         max_spare_threads: 75
         thread_limit: 64
-        thread_per_child: 25
+        threads_per_child: 25
         max_request_workers: 150
         max_connection_per_child: 0
