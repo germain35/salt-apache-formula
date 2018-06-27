@@ -5,7 +5,7 @@ include:
   - apache.config
   - apache.service
 
-{%- for module, params in apache.get('modules', {}).iteritems() %}
+{%- for module, params in apache.get('modules', {}).items() %}
   {%- if params.get('enabled', True) %}
 
 {%- if module == 'passenger' %}

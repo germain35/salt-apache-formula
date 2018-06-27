@@ -8,7 +8,7 @@ apache_disable_default_site:
 {%- endif %}
 
 {%- if apache.sites is defined %}
-  {%- for site, params in apache.sites.iteritems() %}
+  {%- for site, params in apache.sites.items() %}
 apache_site_{{site}}:
   file.managed:
     - name: {{ apache.sites_dir }}/{{params.get('prefix', '')}}{{site}}.conf
