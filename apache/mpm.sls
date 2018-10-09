@@ -13,7 +13,6 @@ include:
 apache_disable_mpm_{{mpm_module}}:
   cmd.run:
     - name: a2dismod mpm_{{mpm_module}}
-    - onlyif: test -f /etc/apache2/mods-enabled/{{apache.mpm_module|lower}}.load
     - require_in:
       - file: apache_module_mpm_{{apache.mpm_module|lower}}
   {%- endif %}
@@ -32,4 +31,3 @@ apache_module_mpm_{{apache.mpm_module|lower}}:
       - sls: apache.install
   cmd.run:
     - name: a2enmod mpm_{{apache.mpm_module|lower}}
-    - creates: /etc/apache2/mods-enabled/{{apache.mpm_module|lower}}.load
