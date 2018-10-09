@@ -6,13 +6,14 @@ include:
   - apache.service
 
 {%- for module, params in apache.get('modules', {}).items() %}
-  {%- if params.get('enabled', True) %}
 
 apache_module_{{module}}:
   pkg.installed:
   - name: libapache2-mod-{{module}}
   - require:
     - pkg: apache_packages
+
+  {%- if params.get('enabled', True) %}
 
 apache_module_{{module}}_enable:
   cmd.run:
@@ -21,7 +22,7 @@ apache_module_{{module}}_enable:
     - watch_in:
       - service: apache_service
     - require:
-      - sls: apache.install
+      - pkg: apache_module_{{module}}
 
   {%- else %}
 
@@ -32,7 +33,7 @@ apache_module_{{module}}_disable:
     - watch_in:
       - service: apache_service
     - require:
-      - sls: apache.install
+      - pkg: apache_module_{{module}}
 
   {%- endif %}
 {%- endfor %}
