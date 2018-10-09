@@ -8,55 +8,11 @@ include:
 {%- for module, params in apache.get('modules', {}).items() %}
   {%- if params.get('enabled', True) %}
 
-{%- if module == 'passenger' %}
-
-apache_passenger_package:
+apache_module_{{module}}:
   pkg.installed:
-  - name: libapache2-mod-passenger
+  - name: libapache2-mod-{{module}}
   - require:
     - pkg: apache_packages
-
-{%- elif module == 'php' %}
-
-apache_php_package:
-  pkg.installed:
-  - name: {{ apache.mod_php }}
-  - require:
-    - pkg: apache_packages
-
-{%- elif module == 'perl' %}
-
-apache_perl_package:
-  pkg.installed:
-  - name: {{ apache.mod_perl }}
-  - require:
-    - pkg: apache_packages
-
-{%- elif module == 'wsgi' %}
-
-apache_wsgi_package:
-  pkg.installed:
-  - name: {{ apache.mod_wsgi }}
-  - require:
-    - pkg: apache_packages
-
-{%- elif module == 'xsendfile' %}
-
-apache_xsendfile_package:
-  pkg.installed:
-  - name: {{ apache.mod_xsendfile }}
-  - require:
-    - pkg: apache_packages
-
-{%- elif module == 'auth_kerb' %}
-
-apache_auth_kerb_package:
-  pkg.installed:
-  - name: {{ apache.mod_auth_kerb }}
-  - require:
-    - pkg: apache_packages
-
-{%- endif %}
 
 apache_module_{{module}}_enable:
   cmd.run:
