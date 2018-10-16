@@ -7,11 +7,13 @@ include:
 
 {%- for module, params in apache.get('modules', {}).items() %}
 
+  {%- if module in apache.mod_pkgs %}
 apache_module_{{module}}:
   pkg.installed:
   - name: libapache2-mod-{{module}}
   - require:
     - pkg: apache_packages
+  {%- endif %}
 
   {%- if params.get('enabled', True) %}
 
@@ -21,8 +23,6 @@ apache_module_{{module}}_enable:
     - creates: /etc/apache2/mods-enabled/{{module}}.load
     - watch_in:
       - service: apache_service
-    - require:
-      - pkg: apache_module_{{module}}
 
   {%- else %}
 
@@ -32,8 +32,6 @@ apache_module_{{module}}_disable:
     - onlyif: test -f /etc/apache2/mods-enabled/{{module}}.load
     - watch_in:
       - service: apache_service
-    - require:
-      - pkg: apache_module_{{module}}
 
   {%- endif %}
 {%- endfor %}
